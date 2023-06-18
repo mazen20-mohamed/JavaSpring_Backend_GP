@@ -1,6 +1,8 @@
-package com.example.AuthoRasa;
+package com.example.AuthoRasa.Model;
 import jakarta.persistence.*;
 
+import javax.annotation.Nonnegative;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import java.util.List;
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 public class User {
     @Id
+    @Nonnegative
     private Long id;
 
     @Column(name = "userName")
@@ -37,11 +40,47 @@ public class User {
     @Column(name = "calories")
     private int calories;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Column(name="firebaseToken")
+    private String token;
+
+    @Column(name="wakeUpTime")
+    private LocalTime wakeUpTime;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<LoginUpdate> listLogin = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<WeightUpdate> listWeight = new ArrayList<>();
+
+    public LocalTime getWakeUpTime() {
+        return wakeUpTime;
+    }
+
+    public void setWakeUpTime(LocalTime wakeUpTime) {
+        this.wakeUpTime = wakeUpTime;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public void addInListLogin(LoginUpdate listLogin) {
         this.listLogin.add(listLogin);
+    }
+    public void addInListWeight(WeightUpdate listWeight) {
+        this.listWeight.add(listWeight);
+    }
+
+    public List<WeightUpdate> getListWeight() {
+        return listWeight;
+    }
+
+    public void setListWeight(List<WeightUpdate> listWeight) {
+        this.listWeight = listWeight;
     }
 
     public List<LoginUpdate> getListLogin() {

@@ -1,5 +1,6 @@
-package com.example.AuthoRasa;
+package com.example.AuthoRasa.Model;
 
+import com.example.AuthoRasa.Model.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
