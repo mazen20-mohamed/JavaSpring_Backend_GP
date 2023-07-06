@@ -12,9 +12,6 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class PushNotificationService {
 
-    @Value("#{${app.notifications.defaults}}")
-    private Map<String, String> defaults;
-
     private Logger logger = LoggerFactory.getLogger(PushNotificationService.class);
     private FCMService fcmService;
 
