@@ -1,7 +1,4 @@
 package com.example.AuthoRasa.Controller;
-import com.example.AuthoRasa.Model.PushNotificationRequest;
-import com.example.AuthoRasa.Model.PushNotificationResponse;
-import com.example.AuthoRasa.PushNotificationService;
 import com.example.AuthoRasa.Repos.LoginRepository;
 import com.example.AuthoRasa.Model.LoginUpdate;
 import com.example.AuthoRasa.Model.User;
@@ -9,7 +6,6 @@ import com.example.AuthoRasa.Repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,13 +33,8 @@ public class MainController {
                     bmr = (int)((10*n.getWeight()) + (6.25*n.getHeight()) - (5*n.getAge()) - 161);
                 }
                 bmr = (int)(bmr * n.getActivationRate());
+                bmr-=300;
                 n.setCalories(bmr);
-//                LoginUpdate loginUpdate = new LoginUpdate();
-//                loginUpdate.setId((loginRepository.count()+1));
-//                loginUpdate.setTime_taken(LocalDateTime.now());
-//                loginUpdate.setUser(n);
-//                loginRepository.save(loginUpdate);
-//                n.addInListLogin(loginUpdate);
                 userRepository.save(n);
                 String string = "saved";
                 return new ResponseEntity<>(string , HttpStatus.OK);

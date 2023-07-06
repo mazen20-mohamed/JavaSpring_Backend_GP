@@ -52,6 +52,27 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<WeightUpdate> listWeight = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<LunchTime> lunchTimeList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<BreakfastTime> breakfastTimeList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<DinnerTime> dinnerTimeList = new ArrayList<>();
+
+    public List<BreakfastTime> getBreakfastTimeList() {
+        return breakfastTimeList;
+    }
+
+    public List<DinnerTime> getDinnerTimeList() {
+        return dinnerTimeList;
+    }
+
+    public List<LunchTime> getLunchTimeList() {
+        return lunchTimeList;
+    }
+
     public LocalTime getWakeUpTime() {
         return wakeUpTime;
     }
