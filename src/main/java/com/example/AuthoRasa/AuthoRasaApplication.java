@@ -10,5 +10,4 @@ public class AuthoRasaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AuthoRasaApplication.class, args);
 	}
-
 }

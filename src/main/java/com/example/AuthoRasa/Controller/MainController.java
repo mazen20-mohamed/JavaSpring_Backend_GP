@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-
+// localhost/demo/login
 @Controller
 @RequestMapping(path="/demo")
 public class MainController {
@@ -21,26 +21,26 @@ public class MainController {
     private LoginRepository loginRepository;
 
     @PostMapping(path="/register")
-    public ResponseEntity<String> register (@RequestBody User n) {
+    public ResponseEntity<String> register (@RequestBody User user) {
             try {
-                n.setId(userRepository.count()+1);
+                user.setId(userRepository.count()+1);
                 int bmr = 0;
                 // calculate calories
-                if(n.getGender().equalsIgnoreCase("men")){
-                    bmr = (int)((10*n.getWeight()) + (6.25*n.getHeight()) - (5*n.getAge()) + 5);
+                if(user.getGender().equalsIgnoreCase("men")){
+                    bmr = (int)((10*user.getWeight()) + (6.25*user.getHeight()) - (5*user.getAge()) + 5);
                 }
                 else{
-                    bmr = (int)((10*n.getWeight()) + (6.25*n.getHeight()) - (5*n.getAge()) - 161);
+                    bmr = (int)((10*user.getWeight()) + (6.25*user.getHeight()) - (5*user.getAge()) - 161);
                 }
-                bmr = (int)(bmr * n.getActivationRate());
+                bmr = (int)(bmr * user.getActivationRate());
                 bmr-=300;
-                n.setCalories(bmr);
-                userRepository.save(n);
+                user.setCalories(bmr);
+                userRepository.save(user);
                 String string = "saved";
-                return new ResponseEntity<>(string , HttpStatus.OK);
+                return new ResponseEntity<>(string , HttpStatus.OK); // 200
             }
             catch (Exception e) {
-                return new ResponseEntity<>(null , HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(null , HttpStatus.BAD_REQUEST); // 400
             }
         }
         @GetMapping(path="/login")

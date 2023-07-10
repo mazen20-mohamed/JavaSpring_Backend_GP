@@ -43,9 +43,6 @@ public class User {
     @Column(name="firebaseToken")
     private String token;
 
-    @Column(name="wakeUpTime")
-    private LocalTime wakeUpTime;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<LoginUpdate> listLogin = new ArrayList<>();
 
@@ -73,13 +70,7 @@ public class User {
         return lunchTimeList;
     }
 
-    public LocalTime getWakeUpTime() {
-        return wakeUpTime;
-    }
 
-    public void setWakeUpTime(LocalTime wakeUpTime) {
-        this.wakeUpTime = wakeUpTime;
-    }
 
     public String getToken() {
         return token;

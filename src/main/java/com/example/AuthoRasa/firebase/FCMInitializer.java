@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
-
+// firebase cloud messaging
 @Service
 public class FCMInitializer {
     @Value("${app.firebase-configuration-file}")
@@ -31,5 +31,4 @@ public class FCMInitializer {
             logger.error(e.getMessage());
         }
     }
-
 }
